@@ -3,6 +3,7 @@ from .models import Product, Category
 
 # Register your models here.
 
+
 class ProductAdmin(admin.ModelAdmin):
     """To customise products view via admin panel"""
     list_display = (
