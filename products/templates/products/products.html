@@ -123,5 +123,49 @@
             </div>
         </div>
     </div>
+    <!-- back to the top button -->
+    <!-- js to scroll page back to the top -->
+    <!-- css to fix position in bottom right corner -->
+    <div class="btt-button shadow-sm rounded-0 border border-black">
+        <a class="btt-link d-flex h-100">
+            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+        </a>
+    </div>
 {% endblock %}
 
+{% block postloadjs %}
+    {{ block.super }}
+    <!-- to scroll back to the top if clicked -->
+    <script type="text/javascript">
+        $('.btt-link').click(function(e) {
+            window.scrollTo(0,0)
+        })
+    </script>
+    <!-- using javascriptcurrent URL's sorting values
+    are taken and replaced with value equal to clicked sorting
+    method. -->
+    <script type="text/javascript">
+        $('#sort-selector').change(function(){
+            var selector = $(this);
+            var currentUrl = new URL(window.location);
+            // selecting all option values
+            var selectedVal = selector.val();
+            // As long as option value is not reset, take first value as sort and second as direction
+            if (selectedVal != "reset") {
+                var sort = selectedVal.split("_")[0];
+                var direction = selectedVal.split("_")[1];
+                // change current Url's sort and direction values with variables values above
+                currentUrl.searchParams.set("sort", sort);
+                currentUrl.searchParams.set("direction", direction);
+
+                window.location.replace(currentUrl);
+            } else {
+                // if reset, just delete sort and direction value
+                currentUrl.searchParams.delete("sort");
+                currentUrl.searchParams.delete("direction");
+
+                window.location.replace(currentUrl);
+            }
+        })
+    </script>
+{% endblock %}
