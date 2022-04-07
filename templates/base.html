@@ -81,9 +81,11 @@
                             </div>
                         </li>
                         <li class="list-inline-item">
+                            <!-- highlighting shopping bag when bag is not empty -->
                             <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
                                 <div class="text-center">
                                     <div><i class="fas fa-shopping-bag fa-lg"></i></div>
+                                    <!-- displaying total cost when product added to the bag -->
                                     <p class="my-0">
                                         {% if grand_total %}
                                             ${{ grand_total|floatformat:2 }}
