@@ -11,6 +11,8 @@ from django.conf import settings
 from django_countries.fields import CountryField
 
 from products.models import Product
+# attaching profile model once profile app created
+from profiles.models import UserProfile
 
 
 class Order(models.Model):
@@ -20,6 +22,10 @@ class Order(models.Model):
     details and total charges
     """
     order_number = models.CharField(max_length=32, null=False, editable=False)
+    # setting on delete to null if the profile is deleted so order history 
+    # remains in admin and allow users to make purchases without profile
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
+                                     null=True, blank=True, related_name='orders')
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
