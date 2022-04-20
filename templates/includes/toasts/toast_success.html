@@ -15,7 +15,8 @@
             </div>
         </div> 
         <!-- displaying shopping bag under messages if there is a grand total -->
-        {% if grand_total %}
+        <!-- not on profile page prevent shopping items displayed when updating profile -->
+        {% if grand_total and not on_profile_page %}
             <p class="logo-font bg-white text-black py-1">Your bag ({{ product_count }})</p>
             <div class="bag-notification-wrapper">
                 {% for item in bag_items %}
