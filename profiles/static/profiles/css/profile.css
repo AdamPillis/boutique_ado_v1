@@ -1,3 +1,10 @@
+/* setting max height of order history incase
+user has many orders */
+.order-history {
+    max-height: 416px;
+    overflow-y: auto;   /* scroll bar */
+}
+
 /* styling profile form text color */
 #profile-update-form .form-control {
     color: #000;
