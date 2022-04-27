@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
+from django.shortcuts import (
+    render, redirect, reverse, HttpResponse, get_object_or_404
+    )
 from django.contrib import messages
 from products.models import Product
 
@@ -88,7 +90,7 @@ def adjust_bag(request, item_id):
 
 def remove_bag(request, item_id):
     """Remove the item from the shopping bag"""
-    # product stored in variable in order to be used 
+    # product stored in variable in order to be used
     # for messaging
     product = get_object_or_404(Product, pk=item_id)
 
